@@ -22,7 +22,6 @@ export const DefaultStatistics: Story = {
     growth: "stable",
     percentage: 30,
     loading: false,
-    fetchFilteredData: () => {},
   },
 };
 
