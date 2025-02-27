@@ -21,6 +21,8 @@ export const DefaultStatistics: Story = {
     precision: 2,
     growth: "stable",
     percentage: 30,
+    loading: false,
+    fetchFilteredData: () => {},
   },
 };
 
@@ -32,6 +34,8 @@ export const IncreasedStatistics: Story = {
     precision: 2,
     growth: "increase",
     percentage: 20,
+    loading: false,
+    fetchFilteredData: () => {},
   },
 };
 
@@ -43,6 +47,8 @@ export const DecreasedStatistics: Story = {
     precision: 2,
     growth: "decrease",
     percentage: 40,
+    loading: false,
+    fetchFilteredData: () => {},
   },
 };
 export default meta;

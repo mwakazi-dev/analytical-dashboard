@@ -17,6 +17,7 @@ interface Props {
   precision?: number;
   growth?: "increase" | "decrease" | "stable";
   percentage?: number;
+  loading: boolean;
 }
 const Statistics: FC<Props> = ({
   title,
