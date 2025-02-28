@@ -95,12 +95,14 @@ const LineChart: React.FC<LineChartProps> = ({
         }}
         gutter={[16, 16]}
       >
-        <Col xs={24} md={12}>
+        <Col>
           <Title level={3} style={{ margin: 0 }}>
             {title}
           </Title>
         </Col>
-        <Col xs={24} md={12}>
+      </Row>
+      <Row style={{ marginBottom: 40 }} justify="end">
+        <Col>
           <FilterInput
             loading={loading}
             fetchFilteredData={fetchFilteredData}

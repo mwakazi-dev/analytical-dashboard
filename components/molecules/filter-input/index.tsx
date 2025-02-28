@@ -14,6 +14,7 @@ interface Props {
   initialValues?: { [key: string]: string };
   options?: { label: string; value: string }[];
 }
+
 /**
  * FilterInput is a functional component that provides a form interface for filtering data.
  * It includes a date range picker and a dataset selector, allowing users to apply filters.
@@ -23,8 +24,12 @@ interface Props {
  * - form: FormInstance - The form instance used to control form state and validation.
  * - fetchFilteredData: (values: FormInstance) => void - A callback function invoked on form submission with current form values.
  * - loading: boolean - A boolean indicating whether the filter button should display a loading state.
+ * - initialValues: { [key: string]: string } - An object containing default form values.
+ *
+ * The component renders a form with a range picker and a select dropdown, and a submit button.
+ * The form is rendered with an inline layout, with the range picker and select dropdown placed side-by-side.
+ * The submit button is rendered to the right of the select dropdown, and is disabled while the form is loading.
  */
-
 const FilterInput: FC<Props> = ({
   form,
   fetchFilteredData,

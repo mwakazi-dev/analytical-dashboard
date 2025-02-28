@@ -4,6 +4,7 @@ import { FC } from "react";
 import { ItemType } from "antd/es/menu/interface";
 
 import { StyledMenu, StyledSider } from "@/styles/sider";
+import Logo from "@/components/atoms/logo";
 
 interface Props {
   menus: ItemType[];
@@ -25,6 +26,7 @@ const Sider: FC<Props> = ({ menus, collapsed }) => {
       collapsible
       collapsed={collapsed}
     >
+      <Logo />
       <StyledMenu
         theme="dark"
         mode="inline"

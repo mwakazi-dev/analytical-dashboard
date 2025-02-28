@@ -1,73 +1,71 @@
-import React, { FC } from "react";
-import { Card, Col, Row, Tag, Typography } from "antd";
+import { FC, JSX } from "react";
+import { Avatar, Card, Col, Row } from "antd";
 
 import { StyledStatistic } from "@/styles/statistics";
 import {
-  ArrowDownOutlined,
-  ArrowUpOutlined,
-  PercentageOutlined,
+  CarryOutOutlined,
+  ShoppingCartOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 
-const { Text } = Typography;
-
 interface Props {
+  id: string;
   title: string;
   value: number;
-  units: string;
-  precision?: number;
-  growth?: "increase" | "decrease" | "stable";
-  percentage?: number;
-  loading: boolean;
+  units?: string | null;
 }
-const Statistics: FC<Props> = ({
-  title,
-  value,
-  units,
-  precision,
-  growth,
-  percentage,
-}) => {
-  let tagColor = "success";
-  tagColor = growth === "decrease" ? "error" : tagColor;
 
+const Icons: Record<string, JSX.Element> = {
+  sales: <ShoppingCartOutlined />,
+  orders: <CarryOutOutlined />,
+  customers: <UserOutlined />,
+};
+const Colors: Record<string, string> = {
+  sales: "#28a745",
+  orders: "#007bff",
+  customers: "#fd7e14",
+};
+
+/**
+ * A functional component that displays statistical information in a card format.
+ *
+ * @param {object} props - The properties object.
+ * @param {string} props.title - The title of the statistic.
+ * @param {number} props.value - The numerical value of the statistic.
+ * @param {string} props.units - The units of the statistic value.
+ * @param {number} [props.precision] - The number of decimal places to show for the value.
+ * @param {"increase" | "decrease" | "stable"} [props.growth] - The growth trend of the statistic.
+ * @param {number} [props.percentage] - The percentage change of the statistic.
+ * @param {boolean} props.loading - Indicates whether the statistic data is loading.
+ *
+ * @returns {JSX.Element} A card component displaying the statistic with growth indicators.
+ */
+
+const Statistics: FC<Props> = ({ id, title, value, units }) => {
   return (
     <Card>
       <Row gutter={[8, 8]}>
         <Col span={24}>
           <StyledStatistic
             title={title}
-            value={value}
-            valueStyle={{ fontWeight: "bold" }}
-            precision={precision}
-            prefix={units}
+            value={`${units || ""}${value}`}
+            valueStyle={{
+              fontWeight: "bold",
+              fontSize: "1.5rem",
+              marginTop: "16px",
+              verticalAlign: "sub",
+            }}
+            prefix={
+              <Avatar
+                size={50}
+                icon={Icons[id]}
+                style={{
+                  backgroundColor: Colors[id],
+                  verticalAlign: "middle",
+                }}
+              />
+            }
           />
-        </Col>
-        <Col span={24}>
-          <Row gutter={[8, 8]}>
-            <Col>
-              <Tag color={tagColor}>
-                <Row gutter={[2, 0]}>
-                  {growth === "increase" && (
-                    <Col>
-                      <ArrowUpOutlined />
-                    </Col>
-                  )}
-                  {growth === "decrease" && (
-                    <Col>
-                      <ArrowDownOutlined />
-                    </Col>
-                  )}
-                  <Col>{percentage}</Col>
-                  <Col>
-                    <PercentageOutlined />
-                  </Col>
-                </Row>
-              </Tag>
-            </Col>
-            <Col>
-              <Text type="secondary">Compared to last month</Text>
-            </Col>
-          </Row>
         </Col>
       </Row>
     </Card>

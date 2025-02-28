@@ -9,6 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Card, Col, FormInstance, Row, Typography } from "antd";
+
 import FilterInput from "@/components/molecules/filter-input";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
@@ -21,6 +22,17 @@ interface BarChartProps {
   fetchFilteredData: (values: FormInstance) => void;
   title: string;
 }
+
+/**
+ * A component that renders a bar chart displaying sales data by category.
+ *
+ * @param {Record<string, number>} data - An object containing sales data for each category.
+ * @param {boolean} loading - Indicates whether the filter button should display a loading state.
+ * @param {(values: FormInstance) => void} fetchFilteredData - Callback invoked on form submission with current form values.
+ * @param {string} title - The title displayed above the chart.
+ *
+ * @returns {JSX.Element} A React component containing a bar chart and filter input.
+ */
 
 const BarChart: React.FC<BarChartProps> = ({
   data,
@@ -50,6 +62,11 @@ const BarChart: React.FC<BarChartProps> = ({
   const options = {
     responsive: true,
     maintainAspectRatio: true,
+    aspectRatio: 1.5,
+    tooltips: {
+      mode: "index",
+      intersect: true,
+    },
     plugins: {
       legend: { position: "top" as const },
       tooltip: { enabled: true },
@@ -70,12 +87,14 @@ const BarChart: React.FC<BarChartProps> = ({
         }}
         gutter={[16, 16]}
       >
-        <Col xs={24} md={12}>
+        <Col>
           <Title level={3} style={{ margin: 0 }}>
             {title}
           </Title>
         </Col>
-        <Col xs={24} md={12}>
+      </Row>
+      <Row style={{ marginBottom: 40 }} justify="end">
+        <Col>
           <FilterInput
             loading={loading}
             fetchFilteredData={fetchFilteredData}

@@ -1,7 +1,7 @@
 const theme = {
   components: {
     Button: {
-      colorPrimary: "#2DAA9E",
+      colorPrimary: "#287F71",
     },
   },
 };

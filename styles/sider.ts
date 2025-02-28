@@ -24,6 +24,6 @@ export const StyledMenu = styled(Menu)`
   }
   .ant-menu-item-selected {
     color: #fff;
-    background-color: #3d8d7a !important; /* Selected item background */
+    background-color: #287f71 !important; /* Selected item background */
   }
 `;

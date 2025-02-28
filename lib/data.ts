@@ -1,4 +1,7 @@
 import { DataPoint } from "@/types/data";
+import { IOrder } from "@/types/order";
+import { ISale } from "@/types/sale";
+import { ITransaction } from "@/types/transaction";
 
 /**
  * Aggregates sales, orders, and transaction data by date.
@@ -11,9 +14,9 @@ import { DataPoint } from "@/types/data";
  */
 
 export const processData = (
-  salesData: { SaleDate: string; TotalAmount: number }[],
-  orderData: { OrderDate: string; TotalAmount: number }[],
-  transactionData: { TransactionDate: string; Amount: number }[]
+  salesData: ISale[],
+  orderData: IOrder[],
+  transactionData: ITransaction[]
 ): DataPoint[] => {
   const aggregatedData: Record<string, DataPoint> = {};
 

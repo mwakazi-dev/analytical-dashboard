@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import { FC } from "react";
+import { ButtonProps } from "antd";
 
 import { StyledButton } from "@/styles/button";
-import { ButtonProps } from "antd";
 
 interface Props {
   loading?: boolean;

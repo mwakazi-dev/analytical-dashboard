@@ -4,5 +4,8 @@ import styled from "styled-components";
 const { Content } = Layout;
 
 export const StyledContent = styled(Content)`
-  margin: 24px 16px 0;
+  margin: 12px 20px;
+  @media (min-width: 768px) {
+    margin: 50px;
+  }
 `;

@@ -15,37 +15,11 @@ type Story = StoryObj<typeof meta>;
 
 export const DefaultStatistics: Story = {
   args: {
+    id: "sales",
     title: "Total Sales",
     value: 100,
     units: "$",
-    precision: 2,
-    growth: "stable",
-    percentage: 30,
-    loading: false,
   },
 };
 
-export const IncreasedStatistics: Story = {
-  args: {
-    title: "Total Sales",
-    value: 120,
-    units: "$",
-    precision: 2,
-    growth: "increase",
-    percentage: 20,
-    loading: false,
-  },
-};
-
-export const DecreasedStatistics: Story = {
-  args: {
-    title: "Total Sales",
-    value: 80,
-    units: "$",
-    precision: 2,
-    growth: "decrease",
-    percentage: 40,
-    loading: false,
-  },
-};
 export default meta;

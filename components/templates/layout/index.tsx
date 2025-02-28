@@ -8,15 +8,24 @@ import {
   BarChartOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
 
 import { Titles } from "@/constants/titles";
 import Header from "@/components/organisms/header";
 import Sider from "@/components/organisms/sider";
 import { StyledContent } from "@/styles/layout";
+import useAnalytics from "@/app/hooks/useAnalytics";
+import SplashScreen from "@/components/atoms/splashscreen";
 
 interface Props {
   children: React.ReactNode;
 }
+
+const MapRoutes: Record<string, string> = {
+  1: "/",
+  2: "/reports",
+  3: "/settings",
+};
 
 /**
  * MainLayout is a functional component that provides the main structure of the application layout.
@@ -31,9 +40,13 @@ interface Props {
  */
 
 const MainLayout: FC<Props> = ({ children }) => {
+  const { isLoading } = useAnalytics();
   const [pageTitle, setPageTitle] = useState(Titles[1]);
+  const router = useRouter();
+
   const menuClickHandler = (e: MenuItemType) => {
     setPageTitle(Titles[e?.key as string]);
+    router.push(MapRoutes[e?.key as string]);
   };
 
   const menus = [
@@ -56,6 +69,10 @@ const MainLayout: FC<Props> = ({ children }) => {
       icon: <SettingOutlined />,
     },
   ];
+
+  if (isLoading) {
+    return <SplashScreen />;
+  }
   return (
     <Layout>
       <Sider menus={menus} />
