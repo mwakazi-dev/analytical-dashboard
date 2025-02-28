@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Layout } from "antd";
 import { MenuItemType } from "antd/es/menu/interface";
 import {
@@ -14,7 +14,6 @@ import { Titles } from "@/constants/titles";
 import Header from "@/components/organisms/header";
 import Sider from "@/components/organisms/sider";
 import { StyledContent } from "@/styles/layout";
-import useAnalytics from "@/app/hooks/useAnalytics";
 import SplashScreen from "@/components/atoms/splashscreen";
 
 interface Props {
@@ -40,9 +39,9 @@ const MapRoutes: Record<string, string> = {
  */
 
 const MainLayout: FC<Props> = ({ children }) => {
-  const { isLoading } = useAnalytics();
   const [pageTitle, setPageTitle] = useState(Titles[1]);
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
 
   const menuClickHandler = (e: MenuItemType) => {
     setPageTitle(Titles[e?.key as string]);
@@ -70,7 +69,13 @@ const MainLayout: FC<Props> = ({ children }) => {
     },
   ];
 
-  if (isLoading) {
+  useEffect(() => {
+    if (!mounted) {
+      setMounted(true);
+    }
+  }, [mounted]);
+
+  if (!mounted) {
     return <SplashScreen />;
   }
   return (
