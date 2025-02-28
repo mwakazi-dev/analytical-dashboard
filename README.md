@@ -159,6 +159,7 @@ vercel deploy
 2. **Expand Unit Tests**: Add more tests for API calls and complex business logic.
 3. **Enhance Performance**: Optimize data fetching and caching.
 4. **Improve UI/UX**: Add better transitions, animations, and interactive elements.
+5. **Improve Responsiveness**: Ensure responsiveness on the mobile screens.
 
 ---
 
