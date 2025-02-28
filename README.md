@@ -4,6 +4,7 @@
 
 - [Project Overview](#project-overview)
 - [Tech Stack](#tech-stack)
+- [Folder Structure](#folder-structure)
 - [Architecture & Design Decisions](#architecture--design-decisions)
 - [Setup Instructions](#setup-instructions)
 - [Running the Project](#running-the-project)
@@ -11,55 +12,47 @@
 - [Code Quality & Linting](#code-quality--linting)
 - [Storybook](#storybook)
 - [Deployment](#deployment)
+- [Future Improvements](#future-improvements)
 
 ## Project Overview
 
-The Analytical Dashboard is a responsive web application built using Next.js (App Router). It provides key insights and visualizations of provided data through interactive charts and metrics. The dashboard features a responsive layout with a sidebar, navigation, and main content displaying charts and analytics.
+The **Analytical Dashboard** is a responsive web application built using **Next.js (App Router)**. It provides interactive visualizations and insights from structured data using **charts, metrics, and filters**. The project follows the **Atomic Design Pattern** for UI structuring and adheres to the **Container-Presentation Design Pattern** for better component separation.
 
 ## Tech Stack
 
-- **Next.js (App Router)**: For server-side rendering, static generation, and optimized performance.
-- **TypeScript**: Provides type safety, enhancing code maintainability and reducing runtime errors.
-- **Ant Design**: A powerful UI library for consistent and professional-looking components.
-- **Jest & React Testing Library**: Ensures unit and integration tests for reliable code.
-- **Husky**: Enforces pre-commit hooks for linting and formatting to maintain code quality.
-- **ESLint & Prettier**: Ensures consistent code formatting and enforces coding standards.
-- **Storybook**: For developing, testing, and showcasing UI components in isolation.
-- **Atomic Design Pattern**: Helps structure UI components in a scalable and reusable way.
+- **Next.js (App Router)**: Chosen because **React Create-React-App is deprecated** [(React Announcement)](https://react.dev/blog/2025/02/14/sunsetting-create-react-app). It enables **server-side rendering (SSR), static generation (SSG), and API routes**.
+- **TypeScript**: Provides static typing, reducing runtime errors and improving maintainability.
+- **Ant Design**: Offers pre-built UI components for a clean and professional UI.
+- **Jest & React Testing Library**: Ensures reliable code with unit and integration tests.
+- **Husky**: Enforces pre-commit hooks for linting and formatting.
+- **ESLint & Prettier**: Enforces coding standards and ensures consistent formatting.
+- **Storybook**: Enables isolated development and testing of UI components.
+- **Atomic Design Pattern**: Structures UI into **Atoms, Molecules, Organisms, Templates, and Pages** [(More on Atomic Design)](https://atomicdesign.bradfrost.com/chapter-2/).
+- **Container-Presentation Design Pattern**: Separates business logic from UI components, making them reusable and easier to test.
 
-## Architecture & Design Decisions
+## Folder Structure
 
-### **1. Next.js (App Router)**
+The project follows a **modular folder structure**:
 
-Next.js was chosen for its powerful server-side rendering (SSR) capabilities, static site generation (SSG), and improved performance. The app router simplifies data fetching and page structuring.
+```
+/analytical-dashboard
+│── /app          # Next.js App Router (pages and API routes)
+│── /components   # Reusable UI components (following Atomic Design)
+│── /constants    # Global constants used across the app
+│── /context      # React Context API for state management
+│── /lib          # Utility functions and helper methods
+│── /providers    # Context providers for global state management
+│── /services     # API calls and data-fetching logic (e.g., Firebase API requests)
+│── /styles       # Global and component-level styles
+│── /types        # TypeScript types and interfaces
+│── /tests        # Unit and integration tests for components
+```
 
-### **2. TypeScript**
+### **Why Atomic Design?**
 
-TypeScript enhances development with static typing, reducing runtime errors and improving code readability.
-
-### **3. Ant Design**
-
-Ant Design was used for a professional, consistent UI, with built-in components for better UX and rapid development.
-
-### **4. Atomic Design Pattern**
-
-The project follows the Atomic Design pattern, breaking down UI components into **Atoms, Molecules, Organisms, Templates, and Pages** for better reusability and maintainability.
-
-### **5. State Management**
-
-The application uses the Context API for lightweight state management, ensuring efficient data flow and updates without unnecessary complexity.
-
-### **6. Testing with Jest & React Testing Library**
-
-Jest and React Testing Library ensure test coverage for key components, improving reliability.
-
-### **7. Storybook**
-
-Storybook allows isolated UI component development and documentation, ensuring consistency in design implementation.
-
-### **8. Code Quality Tools**
-
-Husky, ESLint, and Prettier enforce coding standards, maintaining consistency and preventing errors.
+- **Scalability**: Helps break UI into smaller, reusable components.
+- **Maintainability**: Ensures a structured hierarchy for UI components.
+- **Efficiency**: Components can be developed and tested independently.
 
 ## Setup Instructions
 
@@ -86,7 +79,11 @@ Ensure you have the following installed:
    ```
 3. Set up environment variables:
    - Create a `.env.local` file at the root of the project.
-   - Add the necessary environment variables (example in `.env.example`).
+   - Add the following environment variable:
+     ```sh
+     FIREBASE_PROJECT_ID=analytical-dashboard-12c75-default-rtdb
+     ```
+   - Ensure `.env.local` is **not committed** to version control.
 
 ## Running the Project
 
@@ -112,7 +109,9 @@ yarn start
 
 ## Testing
 
-Run tests with Jest and React Testing Library:
+Unit and integration tests are implemented for **components**. More tests are planned for **API calls and business logic**.
+
+Run tests using:
 
 ```sh
 npm run test
@@ -122,7 +121,7 @@ yarn test
 
 ## Code Quality & Linting
 
-Lint and format the code before committing changes:
+Ensure the code follows proper standards before committing:
 
 ```sh
 npm run lint
@@ -134,7 +133,7 @@ yarn format
 
 ## Storybook
 
-To view and test UI components in isolation:
+To develop and test UI components in isolation:
 
 ```sh
 npm run storybook
@@ -146,10 +145,21 @@ It will be available at `http://localhost:6006`.
 
 ## Deployment
 
-The project can be deployed to Vercel, Netlify, or any hosting provider supporting Next.js:
+This project supports deployment on **Vercel**.
 
 ```sh
 npm run build
 # Deploy using Vercel CLI
 vercel deploy
 ```
+
+## Future Improvements
+
+1. **Complete Filters**: The filtering functionality is not yet finished.
+2. **Expand Unit Tests**: Add more tests for API calls and complex business logic.
+3. **Enhance Performance**: Optimize data fetching and caching.
+4. **Improve UI/UX**: Add better transitions, animations, and interactive elements.
+
+---
+
+This project is a work in progress, and contributions or feedback are welcome!
