@@ -1,5 +1,5 @@
 export interface ITransaction {
   TransactionID: number;
-  TransactionDate: number;
+  TransactionDate: string;
   Amount: number;
 }
